@@ -20,6 +20,11 @@ resource "aws_s3_bucket_versioning" "this" {
 }
 
 resource "aws_s3_bucket_policy" "this" {
+depends_on = [
+  aws_s3_bucket.this,
+  var.policy
+]
+
   count = var.policy != null ? 1 : 0
 
   bucket = aws_s3_bucket.this.id
