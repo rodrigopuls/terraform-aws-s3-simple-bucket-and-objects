@@ -12,7 +12,6 @@ variable "acl" {
 variable "policy" {
   description = "Bucket policy."
   type        = string
-  default     = null
 }
 
 variable "force_destroy" {
