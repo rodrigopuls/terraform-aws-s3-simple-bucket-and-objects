@@ -50,6 +50,6 @@ module "redirect" {
 
   website = {
     redirect_all_requests_to = local.domain
-    protocol                 = "https://"
+    protocol                 = "https"
   }
 }

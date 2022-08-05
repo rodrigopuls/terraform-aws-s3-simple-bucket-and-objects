@@ -60,8 +60,8 @@ resource "aws_s3_bucket_website_configuration" "this" {
     for_each = try([var.website["redirect_all_requests_to"]], [])
 
     content {
-      host_name = try(var.website["index_document"], "")
-      protocol  = try(var.website["protocol"], "http://")
+      host_name = try(var.website["redirect_all_requests_to"], "")
+      protocol  = try(var.website["protocol"], "http")
     }
   }
 }
