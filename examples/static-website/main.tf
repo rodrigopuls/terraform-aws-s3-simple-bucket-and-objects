@@ -19,7 +19,7 @@ module "logs" {
 module "website" {
   source = "github.com/rodrigopuls/terraform-s3-simple-bucket-and-objects"
 
-  name   = local.domain
+  name = local.domain
   acl  = "public-read"
   policy = templatefile("policy.json.tftpl", {
     bucket_name = local.domain
@@ -49,9 +49,7 @@ module "redirect" {
   acl  = "public-read"
 
   website = {
-    redirect_all_requests_to = {
-      host_name = local.domain,
-      protocol = "https://"
-    }
+    redirect_all_requests_to = local.domain
+    protocol                 = "https://"
   }
 }
