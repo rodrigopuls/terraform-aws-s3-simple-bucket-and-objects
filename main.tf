@@ -23,7 +23,7 @@ resource "aws_s3_bucket_policy" "this" {
   count = var.attach_policy ? 1 : 0
 
   bucket = aws_s3_bucket.this.id
-  policy = data.aws_iam_policy_document.combined[0].json
+  policy = data.aws_iam_policy_document.this.json
 }
 
 data "aws_iam_policy_document" "this" {
