@@ -10,7 +10,7 @@ These types of resources are supported:
 
 ```hcl
 module "bucket" {
-  source = "github.com/rodrigopuls/terraform-s3-simple-bucket-and-objects/modules/object"
+  source = "github.com/rodrigopuls/terraform-aws-s3-simple-bucket-and-objects/modules/object"
   
   bucket     = aws_s3_bucket.this.bucket
   filepath   = var.filepath

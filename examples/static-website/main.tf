@@ -10,7 +10,7 @@ terraform {
 }
 
 module "logs" {
-  source = "github.com/rodrigopuls/terraform-s3-simple-bucket-and-objects"
+  source = "github.com/rodrigopuls/terraform-aws-s3-simple-bucket-and-objects"
 
   force_destroy = true
   name          = "${local.domain}-logs"
@@ -18,7 +18,7 @@ module "logs" {
 }
 
 module "website" {
-  source = "github.com/rodrigopuls/terraform-s3-simple-bucket-and-objects"
+  source = "github.com/rodrigopuls/terraform-aws-s3-simple-bucket-and-objects"
 
   name   = local.domain
   acl    = "public-read"
@@ -42,7 +42,7 @@ module "website" {
 }
 
 module "redirect" {
-  source = "github.com/rodrigopuls/terraform-s3-simple-bucket-and-objects"
+  source = "github.com/rodrigopuls/terraform-aws-s3-simple-bucket-and-objects"
 
   name = "www.${local.domain}"
   acl  = "public-read"
