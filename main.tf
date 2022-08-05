@@ -27,7 +27,7 @@ resource "aws_s3_bucket_policy" "this" {
 }
 
 data "aws_iam_policy_document" "this" {
-  count = local.attach_policy ? 1 : 0
+  count = var.attach_policy ? 1 : 0
 
   source_policy_documents = compact([
     var.attach_policy ? var.policy : ""
