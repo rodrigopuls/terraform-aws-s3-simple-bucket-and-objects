@@ -32,7 +32,6 @@ module "website" {
   website = {
     index_document = "index.html"
     error_document = "error.html"
-    redirect_all_requests_to = []
   }
 
   versioning = {
