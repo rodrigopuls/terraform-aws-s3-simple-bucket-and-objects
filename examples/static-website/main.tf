@@ -13,11 +13,6 @@ terraform {
   }
 }
 
-provider "aws" {
-  region  = var.aws_region
-  profile = var.aws_profile
-}
-
 module "logs" {
   source = "github.com/rodrigopuls/terraform-s3-simple-bucket-and-objects"
 
@@ -28,15 +23,16 @@ module "logs" {
 module "website" {
   source = "github.com/rodrigopuls/terraform-s3-simple-bucket-and-objects"
 
-  name   = random_pet.website.id
+  name   = random_pet.this.id
   acl    = "public-read"
-  policy = bucket_policy
+  policy = local.bucket_policy
 
-  files = "${path.root}/../website"
+  filepath = "${path.root}/../website"
 
   website = {
     index_document = "index.html"
     error_document = "error.html"
+    redirect_all_requests_to = []
   }
 
   versioning = {
