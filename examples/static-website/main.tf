@@ -12,6 +12,7 @@ terraform {
 module "logs" {
   source = "github.com/rodrigopuls/terraform-s3-simple-bucket-and-objects"
 
+  force_destroy = true
   name = "${local.domain}-logs"
   acl  = "log-delivery-write"
 }
