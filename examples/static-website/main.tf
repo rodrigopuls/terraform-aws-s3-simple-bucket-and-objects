@@ -22,7 +22,9 @@ module "website" {
 
   name   = local.domain
   acl    = "public-read"
-  policy = local.bucket_policy
+  policy = templatefile("policy.json.tftpl", {
+    bucket_name = local.domain
+  })
 
   filepath = "${path.root}/website"
 
