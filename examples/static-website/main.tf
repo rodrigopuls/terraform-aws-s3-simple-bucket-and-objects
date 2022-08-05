@@ -23,9 +23,11 @@ module "logs" {
 module "website" {
   source = "github.com/rodrigopuls/terraform-s3-simple-bucket-and-objects"
 
-  name   = random_pet.this.id
-  acl    = "public-read"
-  policy = local.bucket_policy
+  name = random_pet.this.id
+  acl  = "public-read"
+  policy = templatefile("policy.json.tftpl", {
+    bucket_name = local.domain
+  })
 
   filepath = "${path.root}/../website"
 
