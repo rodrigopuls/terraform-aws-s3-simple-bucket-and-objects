@@ -20,7 +20,7 @@ resource "aws_s3_bucket_versioning" "this" {
 }
 
 resource "aws_s3_bucket_policy" "this" {
-  count = length(keys(var.website)) > 0 ? 1 : 0
+  count = try(var.website["policy"], null) != null ? 1 : 0
 
   bucket = aws_s3_bucket.this.id
   policy = var.policy

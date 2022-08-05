@@ -6,10 +6,6 @@ terraform {
       source  = "hashicorp/aws"
       version = "4.24.0"
     }
-    random = {
-      source  = "hashicorp/random"
-      version = "3.3.2"
-    }
   }
 }
 
@@ -23,7 +19,7 @@ module "logs" {
 module "website" {
   source = "github.com/rodrigopuls/terraform-s3-simple-bucket-and-objects"
 
-  name = random_pet.this.id
+  name   = local.domain
   acl  = "public-read"
   policy = templatefile("policy.json.tftpl", {
     bucket_name = local.domain
@@ -43,5 +39,16 @@ module "website" {
   logging = {
     target_bucket = module.logs.name
     target_prefix = "access/"
+  }
+}
+
+module "redirect" {
+  source = "github.com/rodrigopuls/terraform-s3-simple-bucket-and-objects"
+
+  name = "www.${local.domain}"
+  acl  = "public-read"
+
+  website = {
+    redirect_all_requests_to = local.domain
   }
 }
