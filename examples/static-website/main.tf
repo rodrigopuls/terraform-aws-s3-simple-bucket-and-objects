@@ -49,6 +49,9 @@ module "redirect" {
   acl  = "public-read"
 
   website = {
-    redirect_all_requests_to = local.domain
+    redirect_all_requests_to = {
+      host_name = local.domain,
+      protocol = "https://"
+    }
   }
 }
