@@ -13,15 +13,15 @@ module "logs" {
   source = "github.com/rodrigopuls/terraform-s3-simple-bucket-and-objects"
 
   force_destroy = true
-  name = "${local.domain}-logs"
-  acl  = "log-delivery-write"
+  name          = "${local.domain}-logs"
+  acl           = "log-delivery-write"
 }
 
 module "website" {
   source = "github.com/rodrigopuls/terraform-s3-simple-bucket-and-objects"
 
-  name = local.domain
-  acl  = "public-read"
+  name   = local.domain
+  acl    = "public-read"
   policy = local.bucket_policy
 
   filepath = "${path.root}/website"
