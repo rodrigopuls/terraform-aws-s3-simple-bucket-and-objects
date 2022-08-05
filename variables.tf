@@ -9,8 +9,14 @@ variable "acl" {
   default     = "private"
 }
 
+variable "attach_policy" {
+  description = "Controls if S3 bucket should have bucket policy attached (set to `true` to use value of `policy` as bucket policy)"
+  type        = bool
+  default     = false
+}
+
 variable "policy" {
-  description = "Bucket policy."
+  description = "A valid bucket policy JSON document. Note that if the policy document is not specific enough (but still valid), Terraform may view the policy as constantly changing in a terraform plan. In this case, please make sure you use the verbose/specific version of the policy. For more information about building AWS IAM policy documents with Terraform, see the AWS IAM Policy Document Guide."
   type        = string
   default     = null
 }
