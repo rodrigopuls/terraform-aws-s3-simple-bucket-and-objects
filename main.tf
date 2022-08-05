@@ -31,8 +31,8 @@ resource "aws_s3_bucket_logging" "this" {
 
   bucket = aws_s3_bucket.this.id
 
-  target_bucket = try([var.logging["target_bucket"]], null)
-  target_prefix = try([var.logging["target_prefix"]], null)
+  target_bucket = try(var.logging["target_bucket"], null)
+  target_prefix = try(var.logging["target_prefix"], null)
 }
 
 resource "aws_s3_bucket_website_configuration" "this" {
